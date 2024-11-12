@@ -1,6 +1,23 @@
 apiVersion: k8s.otterize.com/v1alpha3
 kind: ClientIntents
 metadata:
+  name: csi-service
+  namespace: oda
+spec:
+  service:
+    name: csi-service
+  calls:
+    - name: db
+    - name: db
+      type: database
+      databaseResources:
+        - databaseName: oda
+          operations:
+            - SELECT
+---
+apiVersion: k8s.otterize.com/v1alpha3
+kind: ClientIntents
+metadata:
   name: case-service
   namespace: oda
 spec:
@@ -51,22 +68,6 @@ spec:
         - databaseName: oda
           operations:
             - SELECT
-
----
-apiVersion: k8s.otterize.com/v1alpha3
-kind: ClientIntents
-metadata:
-  name: game-service
-  namespace: oda
-spec:
-  service:
-    name: game-service
-  calls:
-    - name: case-service
-    - name: deduction-service
-    - name: evidence-service
-    - name: interrogation-service
-    - name: player-service
 ---
 apiVersion: k8s.otterize.com/v1alpha3
 kind: ClientIntents
@@ -149,3 +150,4 @@ spec:
     name: credentials-operator-controller-manager
   calls:
     - name: db.oda
+
