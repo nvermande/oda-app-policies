@@ -1,1 +1,12 @@
-
+apiVersion: k8s.otterize.com/v1alpha3
+kind: PostgreSQLServerConfig
+metadata:
+  name: db
+  namespace: oda
+spec:
+  address: db.oda.svc.cluster.local:5432
+  credentials:
+    secretRef:
+      name: db-secret
+      usernameKey: POSTGRES_USER
+      passwordKey: POSTGRES_PASSWORD
